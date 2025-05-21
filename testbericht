@@ -38,6 +38,10 @@ const LoginPage = () => {
 
   return (
     <div className="container login-container" style={{ maxWidth: 400, margin: '100px auto' }}>
+      <div className="text-center mb-4">
+      <img src="/logo-entreprise.png" alt="Logo entreprise" style={{ height: 60, marginBottom: 10 }} />
+      <img src="/logo-app.png" alt="Logo application" style={{ height: 60, marginLeft: 20 }} />
+    </div>
       <h2 className="text-center mb-4">Connexion</h2>
 
       {errorMessage && (
@@ -74,6 +78,13 @@ const LoginPage = () => {
           <a href="/changer-mot-de-passe">Changer de mot de passe</a>
         </p>
       </form>
+    <footer style={{ position: 'fixed', bottom: 0, width: '100%', textAlign: 'center', background: '#f8f9fa' }}>
+  <img
+    src="/footer-image.png"
+    alt="Image footer"
+    style={{ height: 60 }}
+  />
+</footer>
     </div>
   );
 };
