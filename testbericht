@@ -89,4 +89,43 @@ const LoginPage = () => {
   );
 };
 
+
+
+
+
+
+
+## test
+
+<footer
+  style={{
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: '#f8f9fa',
+    padding: '10px 0',
+  }}
+>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '20px',
+    }}
+  >
+    <img
+      src="/logo-entreprise.png"
+      alt="Logo entreprise"
+      style={{ height: 40 }}
+    />
+    <img
+      src="/footer-image.png"
+      alt="Image footer"
+      style={{ height: 60 }}
+    />
+  </div>
+</footer>
+
+
 export default LoginPage;
