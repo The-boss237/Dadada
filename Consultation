@@ -1,0 +1,78 @@
+import React, { useState } from 'react';                  // React et hook pour gérer l'état
+import { NavLink } from 'react-router-dom';               // Pour créer des liens de navigation
+import { useAuth } from '../context/AuthContext';         // Récupérer l’utilisateur connecté
+import '../styles/sidebar.css';                           // Styles CSS personnalisés
+const Sidebar = () => {
+  const { user } = useAuth();  // Accès à l’utilisateur via le contexte
+  const [openIncident11, setOpenIncident11] = useState(false); // Gère si Incident 11 est ouvert
+  const [openIncident12, setOpenIncident12] = useState(false); // Gère si Incident 12 est ouvert
+
+
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <img src="/logo.jpg" alt="Logo entreprise" className="logo-image" />
+      </div>
+      <nav className="nav">
+        <div className="nav-group">
+          <span className="nav-label">Dashboard Menu</span>
+          <div className="dropdown-section">
+            <button className="dropdown-toggle" onClick={() => setOpenIncident11(!openIncident11)}>
+              Incident 11
+            </button>
+            {openIncident11 && (
+              <div className="dropdown-content">
+                <NavLink to="/AA" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>AA</NavLink>
+                <NavLink to="/BB" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>BB</NavLink>
+              </div>
+            )}
+          </div>
+          <div className="dropdown-section">
+            <button className="dropdown-toggle" onClick={() => setOpenIncident12(!openIncident12)}>
+              Incident 12
+            </button>
+            {openIncident12 && (
+              <div className="dropdown-content">
+                <NavLink to="/CC" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>CC</NavLink>
+                <NavLink to="/DD" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>DD</NavLink>
+              </div>
+            )}
+          </div>
+        {user?.username === 'admin' && (
+          <div className="nav-group">
+            <span className="nav-label">Admin</span>
+            <NavLink to="/adduser" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              Ajouter Utilisateur
+            </NavLink>
+          </div>
+        )}
+      </nav>
+    </aside>
+  );
+};
+
+
+
+
+
+.dropdown-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px 0;
+  cursor: pointer;
+  color: #000;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  gap: 6px;
+}
