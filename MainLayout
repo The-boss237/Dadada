@@ -1,0 +1,20 @@
+// src/layouts/MainLayout.tsx
+import React from 'react';
+import Sidebar from '../components/Sidebar';
+import { Outlet } from 'react-router-dom';
+
+const MainLayout = () => {
+  const username = localStorage.getItem('username') || 'Utilisateur';
+  const role = localStorage.getItem('role') || 'user';
+
+  return (
+    <div className="main-layout" style={{ display: 'flex' }}>
+      <Sidebar username={username} role={role} />
+      <div className="content" style={{ flex: 1, padding: '1rem' }}>
+        <Outlet /> {/* Toutes les pages enfants vont s'afficher ici */}
+      </div>
+    </div>
+  );
+};
+
+export default MainLayout;
