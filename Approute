@@ -1,0 +1,26 @@
+// src/router/AppRouter.tsx
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from '../layouts/MainLayout';
+
+import AFSADI from '../pages/Dashboard/AFSADI';
+import Consultation from '../pages/Incidents/Consultation';
+import KPIS from '../pages/KPIS';
+import Login from '../pages/Login';
+// ... autres imports
+
+const AppRouter = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<MainLayout />}>
+        <Route path="dashboard-afs-adi" element={<AFSADI />} />
+        <Route path="consultation" element={<Consultation />} />
+        <Route path="apis-applicatifs" element={<KPIS />} />
+        {/* Autres routes */}
+      </Route>
+    </Routes>
+  </BrowserRouter>
+);
+
+export default AppRouter;
