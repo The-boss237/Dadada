@@ -1,0 +1,102 @@
+// src/components/Sidebar.tsx
+
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { RiBarChart2Fill, RiLogoutBoxRLine, RiEdit2Line, RiProfileLine } from 'react-icons/ri';
+import './Sidebar.css';
+
+const Sidebar = ({ username, role }: { username: string; role: string }) => {
+  const isAdmin = role === 'admin';
+
+  const handleLogout = () => {
+    // Ici vous appelez une fonction logout de votre service d'auth
+    localStorage.clear(); // ou removeToken() si vous stockez un token
+    window.location.href = '/login';
+  };
+
+  return (
+    <div className="sidebar">
+      <div className="sidebar-header">
+        <a href="/" className="sidebar-logo">
+          <img src="/logo.jpg" alt="Logo" className="logo-image" />
+        </a>
+      </div>
+
+      <div className="sidebar-body">
+        <div className="nav-group">
+          <p className="nav-label">Dashboard Incidents</p>
+          <ul className="nav nav-sidebar">
+            <li><NavLink to="/dashboard-afs-adi" className="nav-link"><RiBarChart2Fill /> Dashboard AFS-ADI</NavLink></li>
+            <li><NavLink to="/dashboard-afs" className="nav-link"><RiBarChart2Fill /> Dashboard AFS</NavLink></li>
+            <li><NavLink to="/dashboard-adi" className="nav-link"><RiBarChart2Fill /> Dashboard ADI</NavLink></li>
+            <li><NavLink to="/dashboard-postmortem" className="nav-link"><RiBarChart2Fill /> Dashboard POST MORTEM</NavLink></li>
+          </ul>
+        </div>
+
+        <div className="nav-group">
+          <p className="nav-label">Incident</p>
+          <ul className="nav nav-sidebar">
+            <li><NavLink to="/consultation" className="nav-link"><RiBarChart2Fill /> Consultation</NavLink></li>
+            <li><NavLink to="/modification" className="nav-link"><RiBarChart2Fill /> Modification</NavLink></li>
+            <li><NavLink to="/suivi" className="nav-link"><RiBarChart2Fill /> Suivi des incidents</NavLink></li>
+            <li><NavLink to="/status-incoherent" className="nav-link"><RiBarChart2Fill /> Status incohérent</NavLink></li>
+            <li><NavLink to="/ajout-alerte" className="nav-link"><RiBarChart2Fill /> Ajouter une alerte</NavLink></li>
+            <li><NavLink to="/incidents-mensuels" className="nav-link"><RiBarChart2Fill /> Incidents Mensuel</NavLink></li>
+          </ul>
+        </div>
+
+        <div className="nav-group">
+          <p className="nav-label">Morning Check</p>
+          <ul className="nav nav-sidebar">
+            <li><NavLink to="/dashboard-morning-check" className="nav-link"><RiBarChart2Fill /> Dashboard Morning Check</NavLink></li>
+            <li><NavLink to="/import-file" className="nav-link"><RiBarChart2Fill /> Import File</NavLink></li>
+          </ul>
+        </div>
+
+        <div className="nav-group">
+          <p className="nav-label">KPIS</p>
+          <ul className="nav nav-sidebar">
+            <li><NavLink to="/apis-applicatifs" className="nav-link"><RiBarChart2Fill /> APIs Applicatifs</NavLink></li>
+          </ul>
+        </div>
+
+        {isAdmin && (
+          <div className="nav-group">
+            <p className="nav-label">Gestion Utilisateurs</p>
+            <ul className="nav nav-sidebar">
+              <li><NavLink to="/users" className="nav-link"><RiBarChart2Fill /> Consultation</NavLink></li>
+              <li><NavLink to="/users-connected" className="nav-link"><RiBarChart2Fill /> Consultation user connecté</NavLink></li>
+              <li><NavLink to="/users/add" className="nav-link"><RiBarChart2Fill /> Ajouter Utilisateurs</NavLink></li>
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <div className="sidebar-footer">
+        <div className="sidebar-footer-top">
+          <div className="sidebar-footer-thumb">
+            <img src="https://via.placeholder.com/500/4c5366/fff" alt="" />
+          </div>
+          <div className="sidebar-footer-body">
+            <h6><a href="#">{username?.toUpperCase()}</a></h6>
+          </div>
+        </div>
+
+        <div className="sidebar-footer-menu">
+          <nav className="nav">
+            <NavLink to="/update-profile"><RiEdit2Line /> Edit Profile</NavLink>
+            <NavLink to="/view-profile"><RiProfileLine /> View Profile</NavLink>
+          </nav>
+          <hr />
+          <nav className="nav">
+            <button onClick={handleLogout} className="btn btn-link nav-link d-flex align-items-center">
+              <RiLogoutBoxRLine /><span className="ms-2">Log Out</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;
